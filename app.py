@@ -21,43 +21,6 @@ def predict():
 
         hist_user_behavior_is_shuffle = float(request.form['hist_user_behavior_is_shuffle'])
         hist_user_seek_behavior = float(request.form['hist_user_seek_behavior'])        
-        time_of_day = request.form['time_of_day']   
-        if(time_of_day=='dawn'):
-            time_of_day="dawn"
-        elif(time_of_day=='early_morning'):
-            time_of_day="early_morning"
-        elif(time_of_day=='morning'):
-            time_of_day="morning"            
-        elif(time_of_day=='mid_morning'):
-            time_of_day="mid_morning"             
-        elif(time_of_day=='noon'):
-            time_of_day="noon"             
-        elif(time_of_day=='afternoon'):
-            time_of_day="afternoon"               
-        elif(time_of_day=='evening'):
-            time_of_day="evening"    
-        else:
-            time_of_day="night"  
-            
-        release_condition = request.form['release_condition']
-        if(release_condition=='very_old'):
-            release_condition="very_old"
-        elif(release_condition=='old'):
-            release_condition="old"
-        elif(release_condition=='relatively_old'):
-            release_condition="relatively_old"            
-        elif(release_condition=='new'):
-            release_condition="new"             
-        elif(release_condition=='mordern'):
-            release_condition="mordern"              
-        else:
-            release_condition="latest"        
-        
-        
-        
-        
-        
-        
         session_position = float(request.form['session_position'])
         session_length = float(request.form['session_length'])
         context_switch = float(request.form['session_length'])        
@@ -65,71 +28,6 @@ def predict():
         hist_user_behavior_n_seekfwd = float(request.form['hist_user_behavior_n_seekfwd'])                
         hist_user_behavior_n_seekback = float(request.form['hist_user_behavior_n_seekback'])                
         premium = float(request.form['premium'])  
-              
-        context_type = request.form['context_type']   
-        if(context_type=='user_collection'):
-            context_type="user_collection"
-        elif(context_type=='catalog'):
-            context_type="catalog"
-        elif(context_type=='editorial_playlist'):
-            context_type="editorial_playlist"            
-        elif(context_type=='radio'):
-            context_type="radio"             
-        elif(context_type=='personalized_playlist'):
-            context_type="personalized_playlist"              
-        else:
-            context_type="charts"  
-
-
-
-            
-        hist_user_behavior_reason_start = request.form['hist_user_behavior_reason_start']
-        if(hist_user_behavior_reason_start=='fwdbtn'):
-            hist_user_behavior_reason_start="fwdbtn"
-        elif(hist_user_behavior_reason_start=='trackdone'):
-            hist_user_behavior_reason_start="trackdone"
-        elif(hist_user_behavior_reason_start=='clickrow'):
-            hist_user_behavior_reason_start="clickrow"            
-        elif(hist_user_behavior_reason_start=='backbtn'):
-            hist_user_behavior_reason_start="backbtn"             
-        elif(hist_user_behavior_reason_start=='appload'):
-            hist_user_behavior_reason_start="appload"             
-        elif(hist_user_behavior_reason_start=='playbtn'):
-            hist_user_behavior_reason_start="playbtn"               
-        elif(hist_user_behavior_reason_start=='remote'):
-            hist_user_behavior_reason_start="remote"  
-        elif(hist_user_behavior_reason_start=='trackerror'):
-            hist_user_behavior_reason_start="trackerror"  
-        else:
-            hist_user_behavior_reason_start="endplay" 
-
-
-
-               
-        hist_user_behavior_reason_end = request.form['hist_user_behavior_reason_end']  
-        if(hist_user_behavior_reason_end=='fwdbtn'):
-            hist_user_behavior_reason_end="fwdbtn"
-        elif(hist_user_behavior_reason_end=='trackdone'):
-            hist_user_behavior_reason_end="trackdone"
-        elif(hist_user_behavior_reason_end=='clickrow'):
-            hist_user_behavior_reason_end="clickrow"            
-        elif(hist_user_behavior_reason_end=='backbtn'):
-            hist_user_behavior_reason_end="backbtn"             
-        elif(hist_user_behavior_reason_end=='logout'):
-            hist_user_behavior_reason_end="logout"                           
-        elif(hist_user_behavior_reason_end=='remote'):
-            hist_user_behavior_reason_end="remote"  
-        else:
-            hist_user_behavior_reason_end="endplay"         
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         duration = float(request.form['duration'])       
         us_popularity_estimate = float(request.form['us_popularity_estimate'])       
@@ -146,16 +44,6 @@ def predict():
         mechanism = float(request.form['mechanism'])         
         organism = float(request.form['organism'])         
         speechiness = float(request.form['speechiness'])         
-        mode = request.form['mode']
-        if(mode=='major'):
-            mode="major"
-        else:
-            mode="minor"
-
-
-
-
-         
         tempo = float(request.form['tempo']) 
         valence = float(request.form['valence']) 
         acoustic_vector_0 = float(request.form['acoustic_vector_0']) 
