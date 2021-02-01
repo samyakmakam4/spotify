@@ -4,7 +4,7 @@ lightgbm ==2.2.3
 matplotlib>=1.4.3
 streamlit
 pickle-mixin
-Flask==1.1.2
+flask
 pandas==1.2.0
 jsonify==0.5
 requests==2.25.1
