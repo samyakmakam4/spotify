@@ -13,7 +13,7 @@ import category_encoders as ce
 import zipfile
 import os
 app = Flask(__name__)
-model = pickle.load(open('techncolabs_model.pkl', 'rb'))
+model = pickle.load(open('rf.pkl', 'rb'))
 @app.route('/',methods=['GET'])
 def Home():
     return render_template('index.html')
@@ -173,97 +173,7 @@ def predict():
         acoustic_vector_7 = float(request.form['acoustic_vector_7']) 
 
 
-        zf = zipfile.ZipFile(os.path.join('train_deployment_unscaled.zip')) 
-        train1 = pd.read_csv(zf.open('train_deployment_unscaled.csv'))
-        train=train1
-        #train=scaler.fit_transform(train1.drop(["Unnamed: 0"],axis=1))
-
-
-        X=pd.DataFrame({'acoustic_vector_7': [acoustic_vector_7], 'acoustic_vector_6': [acoustic_vector_6],
-                        'acoustic_vector_5': [acoustic_vector_5], 'acoustic_vector_4': [acoustic_vector_4],
-                        'acoustic_vector_3': [acoustic_vector_3], 'acoustic_vector_2': [acoustic_vector_2],
-                        'acoustic_vector_1': [acoustic_vector_1], 'acoustic_vector_0': [acoustic_vector_0],
-                        'valence': [valence],'tempo': [tempo],'mode': [mode],'speechiness': [speechiness],
-                        'organism': [organism],'mechanism': [mechanism],'loudness': [loudness],'liveness': [liveness],
-                        'flatness': [flatness],'instrumentalness': [instrumentalness],'energy': [energy],
-                        'dyn_range_mean': [dyn_range_mean],'danceability': [danceability],'bounciness': [bounciness],
-                        'beat_strength': [beat_strength],'acousticness': [acousticness],
-                        'us_popularity_estimate': [us_popularity_estimate],'duration': [duration],
-                        'hist_user_behavior_reason_end': [hist_user_behavior_reason_end],
-                       'context_type': [context_type],'premium': [premium],
-                       'hist_user_behavior_n_seekback': [hist_user_behavior_n_seekback],
-                        'hist_user_behavior_n_seekfwd': [hist_user_behavior_n_seekfwd],
-                        'no_pause_before_play': [no_pause_before_play],'context_switch': [context_switch],
-                        'session_length': [session_length],'session_position': [session_position],
-                       'release_condition': [release_condition],'time_of_day': [time_of_day],
-                        'hist_user_seek_behavior': [hist_user_seek_behavior],
-                        'hist_user_behavior_is_shuffle': [hist_user_behavior_is_shuffle]})
-        
-        train=pd.concat([train,X],axis=0)
-        train.reset_index()
-        
-        
-
-        dummy=train[["time_of_day","hist_user_behavior_reason_end","hist_user_behavior_reason_start","context_type","release_condition"]]
-        encoder=ce.BinaryEncoder(cols=dummy.columns,return_df=True)
-        dummy_encoded=encoder.fit_transform(dummy) 
-        train=pd.concat([train.drop(["time_of_day","hist_user_behavior_reason_end","hist_user_behavior_reason_start","context_type","release_condition"],axis=1),dummy_encoded],axis=1)
-
-        #dummy encoding the required columns and dropping the irrelevant columns
-        train=pd.concat([train,pd.get_dummies(train["mode"], prefix="mode",drop_first=True)],axis=1)
-        train=train.drop(["mode"],axis=1)
-        traincol=train
-
-        train=scaler.fit_transform(train)
-        train=pd.DataFrame(data=train,columns=traincol.columns) 
-        train=train.drop(["hist_user_behavior_is_shuffle","context_type_0","hist_user_behavior_reason_start_0","time_of_day_0","premium","hist_user_behavior_reason_end_0","release_condition_0","hist_user_behavior_reason_start_1"],axis=1)
-        train=train[['session_position',
-                    'session_length',
-                    'context_switch',
-                    'no_pause_before_play',
-                    'hist_user_behavior_n_seekfwd',
-                    'hist_user_behavior_n_seekback',
-                    'hist_user_seek_behavior',
-                    'time_of_day_1',
-                    'time_of_day_2',
-                    'time_of_day_3',
-                    'hist_user_behavior_reason_end_1',
-                    'hist_user_behavior_reason_end_2',
-                    'hist_user_behavior_reason_end_3',
-                    'hist_user_behavior_reason_start_2',
-                    'hist_user_behavior_reason_start_3',
-                    'hist_user_behavior_reason_start_4',
-                    'context_type_1',
-                    'context_type_2',
-                    'context_type_3',
-                    'duration',
-                    'us_popularity_estimate',
-                    'acousticness',
-                    'beat_strength',
-                    'bounciness',
-                    'danceability',
-                    'dyn_range_mean',
-                    'energy',
-                    'flatness',
-                    'instrumentalness',
-                    'liveness',
-                    'loudness',
-                    'mechanism',
-                    'organism',
-                    'speechiness',
-                    'valence',
-                    'acoustic_vector_0',
-                    'acoustic_vector_1',
-                    'acoustic_vector_2',
-                    'acoustic_vector_3',
-                    'acoustic_vector_4',
-                    'acoustic_vector_5',
-                    'acoustic_vector_6',
-                    'acoustic_vector_7',
-                    'release_condition_1',
-                    'release_condition_2',
-                    'release_condition_3',
-                    'mode_minor']]
+       
         p=model.predict(train.tail(1))
          
         if p==0:
