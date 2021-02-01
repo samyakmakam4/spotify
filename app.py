@@ -2,7 +2,6 @@ import os
 from flask import Flask, render_template, request
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
-import gunicorn
 scaler = StandardScaler()
 import jsonify
 import requests
