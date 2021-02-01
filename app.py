@@ -13,8 +13,8 @@ import category_encoders as ce
 import zipfile
 import os
 app = Flask(__name__)
-model = pickle.load(open('rf.pkl', 'rb'))
-@app.route("/",methods=['GET'])
+model = pickle.load(open('techncolabs_model.pkl', 'rb'))
+@app.route('/',methods=['GET'])
 def Home():
     return render_template('index.html')
 
@@ -172,13 +172,8 @@ def predict():
         acoustic_vector_6 = float(request.form['acoustic_vector_6']) 
         acoustic_vector_7 = float(request.form['acoustic_vector_7']) 
 
-
-       
-        p=model.predict([[hist_user_behavior_is_shuffle,hist_user_seek_behavior, time_of_day,release_condition, session_position,context_switch,no_pause_before_play,
-                         hist_user_behavior_n_seekfwd,hist_user_behavior_n_seekback, premium,context_type,hist_user_behavior_reason_start,hist_user_behavior_reason_end,
-                         duration,us_popularity_estimate,acousticness,beat_strength,bounciness,danceability,dyn_range_mean,energy,instrumentalness,flatness,
-                         liveness,loudness,mechanism,organism,speechiness,mode,tempo,valence,acoustic_vector_0,acoustic_vector_1,acoustic_vector_2,acoustic_vector_3,
-                         acoustic_vector_4,acoustic_vector_5,acoustic_vector_6,acoustic_vector_7]])
+        prediction=model.predict([[hist_user_behavior_is_shuffle,hist_user_seek_behavior,time_of_day,release_condition,session_position,session_length,context_switch,no_pause_before_play,hist_user_behavior_n_seekfwd,hist_user_behavior_n_seekback,premium,context_type,hist_user_behavior_reason_start,hist_user_behavior_reason_end,duration,us_popularity_estimate,acousticness,beat_strength,bounciness,danceability,dyn_range_mean,energy,instrumentalness,flatness,liveness,loudness,mechanism,organism,speechiness,mode,tempo,valence,acoustic_vector_0,acoustic_vector_1,acoustic_vector_2,acoustic_vector_3,acoustic_vector_4,acoustic_vector_5, acoustic_vector_6,acoustic_vector_7]]) 
+        p=model.predict(prediction)
          
         if p==0:
             return render_template('index.html',prediction_texts="Based on the given inputs, the song should not be skipped")
