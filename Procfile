@@ -1,1 +1,1 @@
-web: gunicorn app.py:sampredspotify
+web: gunicorn app:runn
