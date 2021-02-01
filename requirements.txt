@@ -1,11 +1,13 @@
 numpy>=1.9.2
 scipy>=0.15.1
-scikit-learn==0.22.1
 lightgbm ==2.2.3
 matplotlib>=1.4.3
-pandas>=0.19
 streamlit
-flask>=1.1.1
 jsonify
 pickle-mixin
-
+Flask==1.1.2
+pandas==1.2.0
+jsonify==0.5
+requests==2.25.1
+category_encoders==2.2.2
+scikit_learn==0.24.1
