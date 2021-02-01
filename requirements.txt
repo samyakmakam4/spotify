@@ -1,6 +1,5 @@
 pickle-mixin
 flask
-jsonify==0.5
 requests==2.25.1
 category_encoders==2.2.2
 numpy>=1.9.2
