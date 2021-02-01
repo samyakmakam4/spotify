@@ -162,7 +162,7 @@ def predict():
 
          
         tempo = float(request.form['tempo']) 
-       valence = float(request.form['valence']) 
+        valence = float(request.form['valence']) 
         acoustic_vector_0 = float(request.form['acoustic_vector_0']) 
         acoustic_vector_1 = float(request.form['acoustic_vector_1']) 
         acoustic_vector_2 = float(request.form['acoustic_vector_2']) 
