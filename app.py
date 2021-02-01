@@ -12,7 +12,7 @@ import sklearn
 import category_encoders as ce
 import zipfile
 import os
-app = Flask(__name__)
+runn = Flask(__name__)
 model = pickle.load(open('rf.pkl', 'rb'))
 @app.route('/',methods=['GET'])
 def Home():
@@ -184,4 +184,4 @@ def predict():
         return render_template('index.html')
 
 if __name__=="__main__":
-    app.run(debug=True)
+    runn.run(debug=True)
