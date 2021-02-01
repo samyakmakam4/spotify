@@ -15,6 +15,7 @@ def Home():
 
 @app.route("/predict", methods=['POST'])
 def predict():
+    if request.method=='POST':
         hist_user_behavior_is_shuffle = float(request.form['hist_user_behavior_is_shuffle'])
         hist_user_seek_behavior = float(request.form['hist_user_seek_behavior'])
         time_of_day = str(request.form['time_of_day'])
