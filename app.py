@@ -162,7 +162,7 @@ def predict():
 
          
         tempo = float(request.form['tempo']) 
-        valence = float(request.form['valence']) 
+       valence = float(request.form['valence']) 
         acoustic_vector_0 = float(request.form['acoustic_vector_0']) 
         acoustic_vector_1 = float(request.form['acoustic_vector_1']) 
         acoustic_vector_2 = float(request.form['acoustic_vector_2']) 
@@ -174,53 +174,11 @@ def predict():
 
 
        
-        p=model.predict([[session_position,
-                    session_length,
-                    context_switch,
-                    no_pause_before_play,
-                    hist_user_behavior_n_seekfwd,
-                    hist_user_behavior_n_seekback,
-                    hist_user_seek_behavior,
-                    time_of_day_1,
-                    time_of_day_2,
-                    time_of_day_3,
-                    hist_user_behavior_reason_end_1,
-                    hist_user_behavior_reason_end_2,
-                    hist_user_behavior_reason_end_3,
-                    hist_user_behavior_reason_start_2,
-                    hist_user_behavior_reason_start_3,
-                    hist_user_behavior_reason_start_4,
-                    context_type_1,
-                    context_type_2,
-                    context_type_3,
-                    duration,
-                    us_popularity_estimate,
-                    acousticness,
-                    beat_strength,
-                    bounciness,
-                    danceability,
-                    dyn_range_mean,
-                    energy,
-                    flatness,
-                    instrumentalness,
-                    liveness,
-                    loudness,
-                    mechanism,
-                    organism,
-                    speechiness,
-                    valence,
-                    acoustic_vector_0,
-                    acoustic_vector_1,
-                    acoustic_vector_2,
-                    acoustic_vector_3,
-                    acoustic_vector_4,
-                    acoustic_vector_5,
-                    acoustic_vector_6,
-                    acoustic_vector_7,
-                    release_condition_1,
-                    release_condition_2,
-                    release_condition_3,
-                    mode_minor]])
+        p=model.predict([[hist_user_behavior_is_shuffle,hist_user_seek_behavior, time_of_day,release_condition, session_position,context_switch,no_pause_before_play,
+                         hist_user_behavior_n_seekfwd,hist_user_behavior_n_seekback, premium,context_type,hist_user_behavior_reason_start,hist_user_behavior_reason_end,
+                         duration,us_popularity_estimate,acousticness,beat_strength,bounciness,danceability,dyn_range_mean,energy,instrumentalness,flatness,
+                         liveness,loudness,mechanism,organism,speechiness,mode,tempo,valence,acoustic_vector_0,acoustic_vector_1,acoustic_vector_2,acoustic_vector_3,
+                         acoustic_vector_4,acoustic_vector_5,acoustic_vector_6,acoustic_vector_7]])
          
         if p==0:
             return render_template('index.html',prediction_texts="Based on the given inputs, the song should not be skipped")
