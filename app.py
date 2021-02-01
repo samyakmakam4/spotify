@@ -14,7 +14,7 @@ import zipfile
 import os
 runn = Flask(__name__)
 model = pickle.load(open('rf.pkl', 'rb'))
-@app.route('/',methods=['GET'])
+@app.route("/",methods=['GET'])
 def Home():
     return render_template('index.html')
 
