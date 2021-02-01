@@ -10,5 +10,5 @@ matplotlib>=1.4.3
 pandas>=0.19
 streamlit
 gunicorn==20.0.4
-
+networkx
 jsonify
