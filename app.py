@@ -180,7 +180,7 @@ def predict():
         else:
             return render_template('index.html',prediction_texts="Based on the given inputs, the song should be skipped")
     else:
-        return render_template('index.html')
+        return render_template('index.html',prediction_texts="Input error")
 
 if __name__=="__main__":
     app.run(debug=True)
