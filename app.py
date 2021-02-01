@@ -19,8 +19,7 @@ def predict():
     if request.method == 'POST':
         
 
-        hist_user_behavior_is_shuffle = float(request.form['hist_user_behavior_is_shuffle'])
-        hist_user_seek_behavior = float(request.form['hist_user_seek_behavior'])        
+        hist_user_behavior_is_shuffle = float(request.form['hist_user_behavior_is_shuffle'])       
         session_position = float(request.form['session_position'])
         session_length = float(request.form['session_length'])
         context_switch = float(request.form['session_length'])        
@@ -28,7 +27,22 @@ def predict():
         hist_user_behavior_n_seekfwd = float(request.form['hist_user_behavior_n_seekfwd'])                
         hist_user_behavior_n_seekback = float(request.form['hist_user_behavior_n_seekback'])                
         premium = float(request.form['premium'])  
-        
+        context_type_catalog=float(request.form['context_type_catalog'])
+        context_type_charts=float(request.form['context_type_charts'])
+        context_type_editorial_playlist=float(request.form['context_type_editorial_playlist'])
+        context_type_personalized_playlist=float(request.form['context_type_personalized_playlist'])
+        context_type_radio=float(request.form['context_type_radio'])
+        context_type_user_collection=float(request.form['context_type_user_collection'])
+        hist_user_behavior_reason_start_appload = float(request.form['hist_user_behavior_reason_start_appload'])
+        hist_user_behavior_reason_start_backbtn = float(request.form['hist_user_behavior_reason_start_backbtn'])
+        hist_user_behavior_reason_start_clickrow = float(request.form['hist_user_behavior_reason_start_clickrow'])
+        hist_user_behavior_reason_start_endplay = float(request.form['hist_user_behavior_reason_start_endplay'])
+        hist_user_behavior_reason_start_fwdbtn = float(request.form['hist_user_behavior_reason_start_fwdbtn'])
+        hist_user_behavior_reason_start_playbtn = float(request.form['hist_user_behavior_reason_start_playbtn'])
+        hist_user_behavior_reason_start_remote = float(request.form['hist_user_behavior_reason_start_remote'])
+        hist_user_behavior_reason_start_trackdone = float(request.form['hist_user_behavior_reason_start_trackdone'])
+        hist_user_behavior_reason_start_trackerror = float(request.form['hist_user_behavior_reason_start_trackerror'])
+        hist_user_behavior_reason_end_logout = float(request.form['hist_user_behavior_reason_end_logout'])
         duration = float(request.form['duration'])       
         us_popularity_estimate = float(request.form['us_popularity_estimate'])       
         acousticness = float(request.form['acousticness'])       
@@ -41,7 +55,8 @@ def predict():
         flatness = float(request.form['flatness'])         
         liveness = float(request.form['liveness'])         
         loudness = float(request.form['loudness'])         
-        mechanism = float(request.form['mechanism'])         
+        mechanism = float(request.form['mechanism'])
+        is_major = float(request.form['is_major'])
         organism = float(request.form['organism'])         
         speechiness = float(request.form['speechiness'])         
         tempo = float(request.form['tempo']) 
@@ -55,7 +70,7 @@ def predict():
         acoustic_vector_6 = float(request.form['acoustic_vector_6']) 
         acoustic_vector_7 = float(request.form['acoustic_vector_7']) 
 
-        prediction=model.predict([[hist_user_behavior_is_shuffle,hist_user_seek_behavior,session_position,session_length,no_pause_before_play,hist_user_behavior_n_seekfwd,hist_user_behavior_n_seekback,premium,context_type,duration,us_popularity_estimate,acousticness,beat_strength,bounciness,danceability,dyn_range_mean,energy,instrumentalness,flatness,liveness,loudness,mechanism,organism,speechiness,tempo,valence,acoustic_vector_0,acoustic_vector_1,acoustic_vector_2,acoustic_vector_3,acoustic_vector_4,acoustic_vector_5, acoustic_vector_6,acoustic_vector_7]]) 
+        prediction=model.predict([[hist_user_behavior_is_shuffle,session_position,session_length,context_switch,no_pause_before_play,hist_user_behavior_n_seekfwd,hist_user_behavior_n_seekback,hist_user_behavior_is_shufffle,hour_of_day,premium,context_type_catalog,context_type_charts,,duration,us_popularity_estimate,acousticness,beat_strength,bounciness,danceability,dyn_range_mean,energy,instrumentalness,flatness,liveness,loudness,mechanism,organism,speechiness,tempo,valence,acoustic_vector_0,acoustic_vector_1,acoustic_vector_2,acoustic_vector_3,acoustic_vector_4,acoustic_vector_5, acoustic_vector_6,acoustic_vector_7]]) 
         p=round(prediction[0],0)
          
         if p==0:
