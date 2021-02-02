@@ -42,7 +42,13 @@ def predict():
         hist_user_behavior_reason_start_remote = float(request.form['hist_user_behavior_reason_start_remote'])
         hist_user_behavior_reason_start_trackdone = float(request.form['hist_user_behavior_reason_start_trackdone'])
         hist_user_behavior_reason_start_trackerror = float(request.form['hist_user_behavior_reason_start_trackerror'])
+        hist_user_behavior_reason_end_backbtn = float(request.form['hist_user_behavior_reason_end_backbtn'])
+        hist_user_behavior_reason_end_clickrow = float(request.form['hist_user_behavior_reason_end_clickrow'])
+        hist_user_behavior_reason_end_endplay = float(request.form['hist_user_behavior_reason_end_endplay'])
+        hist_user_behavior_reason_end_fwdbtn = float(request.form['hist_user_behavior_reason_end_fwdbtn'])
         hist_user_behavior_reason_end_logout = float(request.form['hist_user_behavior_reason_end_logout'])
+        hist_user_behavior_reason_end_remote = float(request.form['hist_user_behavior_reason_end_remote'])
+        hist_user_behavior_reason_end_trackdone = float(request.form['hist_user_behavior_reason_end_trackdone'])
         duration = float(request.form['duration'])       
         us_popularity_estimate = float(request.form['us_popularity_estimate'])       
         acousticness = float(request.form['acousticness'])       
@@ -70,7 +76,12 @@ def predict():
         acoustic_vector_6 = float(request.form['acoustic_vector_6']) 
         acoustic_vector_7 = float(request.form['acoustic_vector_7']) 
 
-        prediction=model.predict([[hist_user_behavior_is_shuffle,session_position,session_length,context_switch,no_pause_before_play,hist_user_behavior_n_seekfwd,hist_user_behavior_n_seekback,hist_user_behavior_is_shufffle,hour_of_day,premium,context_type_catalog,context_type_charts,,duration,us_popularity_estimate,acousticness,beat_strength,bounciness,danceability,dyn_range_mean,energy,instrumentalness,flatness,liveness,loudness,mechanism,organism,speechiness,tempo,valence,acoustic_vector_0,acoustic_vector_1,acoustic_vector_2,acoustic_vector_3,acoustic_vector_4,acoustic_vector_5, acoustic_vector_6,acoustic_vector_7]]) 
+        prediction=model.predict([[session_position,session_length,context_switch,no_pause_before_play,hist_user_behavior_n_seekfwd,hist_user_behavior_n_seekback,hist_user_behavior_is_shufffle,premium,context_type_catalog,context_type_charts,context_type_editorial_playlist,context_type_personalized_playlist,context_type_radio,context_type_user_collection,
+                                   hist_user_behavior_reason_start_appload,hist_user_behavior_reason_start_backbtn,hist_user_behavior_reason_start_clickrow,hist_user_behavior_reason_start_endplay,
+                                   hist_user_behavior_reason_start_fwdbtn,hist_user_behavior_reason_start_playbtn,hist_user_behavior_reason_start_remote,hist_user_behavior_reason_start_trackdone,
+                                   hist_user_behavior_reason_start_trackerror,hist_user_behavior_reason_end_backbtn,hist_user_behavior_reason_end_clickrow,hist_user_behavior_reason_end_endplay,
+                                   hist_user_behavior_reason_end_fedbtn,hist_user_behavior_reason_end_logout,hist_user_behavior_reason_end_remote,hist_user_behavior_reason_end_trackdone,
+                                   ,duration,us_popularity_estimate,acousticness,beat_strength,bounciness,danceability,dyn_range_mean,energy,instrumentalness,flatness,liveness,loudness,mechanism,is_major,organism,speechiness,tempo,valence,acoustic_vector_0,acoustic_vector_1,acoustic_vector_2,acoustic_vector_3,acoustic_vector_4,acoustic_vector_5, acoustic_vector_6,acoustic_vector_7]]) 
         p=round(prediction[0],0)
          
         if p==0:
